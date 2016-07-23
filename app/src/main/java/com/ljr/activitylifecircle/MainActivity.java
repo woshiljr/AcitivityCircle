@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    public static final String BOOK_NAME="bookname";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,12 +19,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate:执行了");
         Button button= (Button) findViewById(R.id.activity_main_button);
+        final EditText editText = (EditText) findViewById(R.id.activity_main_edit_text);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                Intent intent=new Intent(MainActivity.this,ActivitySecond.class);
 //                startActivity(intent);
-                Toast.makeText(MainActivity.this, "你点了我", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "你点了我", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, ActivitySecond.class);
+//                intent.putExtra("name", "xxxxxxxxxxxxxxx");
+                intent.putExtra(BOOK_NAME, editText.getText().toString());
+                startActivity(intent);
             }
         });
 
